@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+base_dir = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+current_dir = File.expand_path(Dir.pwd)
+
+Dir.chdir("#{base_dir}/ext/rqr")
+
+targets =['QR.so', 'QR.bundle','mkmf.log','Makefile'] + Dir.glob("*.o")
+
+targets.each do |file|
+  File.delete(file) if File.exists? file
+end

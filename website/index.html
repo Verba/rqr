@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link rel="stylesheet" href="stylesheets/screen.css" type="text/css" media="screen" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>
+      rqr
+  </title>
+  <script src="javascripts/rounded_corners_lite.inc.js" type="text/javascript"></script>
+<style>
+
+</style>
+  <script type="text/javascript">
+    window.onload = function() {
+      settings = {
+          tl: { radius: 10 },
+          tr: { radius: 10 },
+          bl: { radius: 10 },
+          br: { radius: 10 },
+          antiAlias: true,
+          autoPad: true,
+          validTags: ["div"]
+      }
+      var versionBox = new curvyCorners(settings, document.getElementById("version"));
+      versionBox.applyCornersToAll();
+    }
+  </script>
+</head>
+<body>
+<div id="main">
+
+    <h1>rqr</h1>
+    <div id="version" class="clickable" onclick='document.location = "http://rubyforge.org/projects/rqr"; return false'>
+      <p>Get Version</p>
+      <a href="http://rubyforge.org/projects/rqr" class="numbers">0.1.0</a>
+    </div>
+    <h2>What</h2>
+
+
+	<p>A ruby library to create qrcode. Output: PS, <span class="caps">JPEG</span>, PNG, <span class="caps">EPS</span>, TIFF.</p>
+
+
+	<h2><span class="caps">REQUIREMENTS</span></h2>
+
+
+<ul>
+<li>libjpeg</li>
+<li>libpng</li>
+<li>libtiff</li>
+</ul>
+
+	<h3>Linux</h3>
+
+
+	<p>If using Linux, Install libs with yum command.
+<pre class='syntax'>
+<span class="global">$ </span><span class="ident">sudo</span> <span class="ident">yum</span> <span class="ident">install</span> <span class="ident">libjpeg</span>
+<span class="global">$ </span><span class="ident">sudo</span> <span class="ident">yum</span> <span class="ident">install</span> <span class="ident">libpng</span>
+<span class="global">$ </span><span class="ident">sudo</span> <span class="ident">yum</span> <span class="ident">install</span> <span class="ident">libtiff</span>
+</pre></p>
+
+
+	<h3><span class="caps">OSX</span></h3>
+
+
+	<p>If using <span class="caps">OSX</span>, Use Fink Universal Binary libs.
+<pre class='syntax'>
+<span class="global">$ </span><span class="ident">sudo</span> <span class="ident">fink</span> <span class="ident">install</span> <span class="ident">libjpeg</span>
+<span class="global">$ </span><span class="ident">sudo</span> <span class="ident">fink</span> <span class="ident">install</span> <span class="ident">libpng</span>
+<span class="global">$ </span><span class="ident">sudo</span> <span class="ident">fink</span> <span class="ident">install</span> <span class="ident">libtiff</span>
+</pre></p>
+
+
+	<h2>Installing</h2>
+
+
+	<p><pre class='syntax'><span class="ident">sudo</span> <span class="ident">gem</span> <span class="ident">install</span> <span class="ident">rqr</span></pre></p>
+
+
+	<h2>Demonstration of usage</h2>
+
+
+	<p><pre class='syntax'>
+<span class="ident">require</span> <span class="punct">&quot;</span><span class="string">rubygem</span><span class="punct">&quot;</span>
+<span class="ident">require</span> <span class="punct">&quot;</span><span class="string">rqrcode</span><span class="punct">&quot;</span>
+
+<span class="ident">qr</span> <span class="punct">=</span> <span class="constant">RQR</span><span class="punct">::</span><span class="constant">QRCode</span><span class="punct">.</span><span class="ident">new</span><span class="punct">()</span>
+
+<span class="comment">#Define a file format with extensions.</span>
+<span class="ident">qr</span><span class="punct">.</span><span class="ident">save</span><span class="punct">(&quot;</span><span class="string">http://www.google.com</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">path/to/qrcode.jpg</span><span class="punct">&quot;)</span>
+
+<span class="comment">#Define a file format with symbol.</span>
+<span class="ident">qr</span><span class="punct">.</span><span class="ident">save</span><span class="punct">(&quot;</span><span class="string">http://www.yahoo.com</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">path/to/qrcodefile</span><span class="punct">&quot;,</span> <span class="symbol">:png</span><span class="punct">)</span>	
+
+
+<span class="comment">#QRCode options</span>
+<span class="comment"># Use options with hash values.</span>
+<span class="comment">#  :level       L:0, M:1(default), Q:2, H:3</span>
+<span class="comment">#  :version     S:0(default), M:1, L:2</span>
+<span class="comment">#  :auto_extent  true|false auto extent if over version size</span>
+<span class="comment">#  :masking     masking pattern 0-7, -1(default auto)</span>
+<span class="comment">#  :length      data length</span>
+<span class="comment">#  :module_size module size (pixel)</span>
+<span class="comment">#  :eps_preview true|false</span>
+
+<span class="comment"># This sample creates a EPS with preview.</span>
+<span class="ident">qr</span> <span class="punct">=</span> <span class="constant">QRCode</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="symbol">:eps_preview</span> <span class="punct">=&gt;</span> <span class="constant">true</span><span class="punct">,</span> <span class="symbol">:auto_extent=</span><span class="constant">false</span><span class="punct">)</span>
+<span class="ident">qr</span><span class="punct">.</span><span class="ident">save</span><span class="punct">(&quot;</span><span class="string">http://www.ebay.com</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">path/to/qrcode.eps</span><span class="punct">&quot;)</span>
+</pre></p>
+
+
+	<h2>License</h2>
+
+
+	<p>This code is free to use under the terms of the <span class="caps">MIT</span> license.</p>
+
+
+	<h2>Contact</h2>
+
+
+	<p>Comments are welcome. Send an email via the <a href="http://rubyforge.org/projects/rqr/">rubyforge</a></p>
+    <p class="coda">
+      <a href="FIXME email">FIXME full name</a>, 26th May 2008<br>
+      Theme extended from <a href="http://rb2js.rubyforge.org/">Paul Battley</a>,
+      by Daniel Cadenas via <a href="http://depgraph.rubyforge.org/">DepGraph</a>
+    </p>
+</div>
+
+<!-- insert site tracking codes here, like Google Urchin -->
+
+</body>
+</html>

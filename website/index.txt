@@ -1,0 +1,75 @@
+h1. rqr
+
+h2. What
+
+A ruby library to create qrcode. Output: PS, JPEG, PNG, EPS, TIFF.
+
+h2. REQUIREMENTS
+
+<ul>
+<li>libjpeg</li>
+<li>libpng</li>
+<li>libtiff</li>
+</ul>
+
+h3. Linux
+
+If using Linux, Install libs with yum command.
+<pre syntax="ruby">
+$ sudo yum install libjpeg
+$ sudo yum install libpng
+$ sudo yum install libtiff
+</pre>
+
+h3. OSX
+
+If using OSX, Use Fink Universal Binary libs.
+<pre syntax="ruby">
+$ sudo fink install libjpeg
+$ sudo fink install libpng
+$ sudo fink install libtiff
+</pre>
+
+
+h2. Installing
+
+<pre syntax="ruby">sudo gem install rqr</pre>
+
+h2. Demonstration of usage
+
+<pre syntax="ruby">
+require "rubygem"
+require "rqrcode"
+
+qr = RQR::QRCode.new()
+
+#Define a file format with extensions.
+qr.save("http://www.google.com", "path/to/qrcode.jpg")
+
+#Define a file format with symbol.
+qr.save("http://www.yahoo.com", "path/to/qrcodefile", :png)	
+
+
+#QRCode options
+# Use options with hash values.
+#  :level       L:0, M:1(default), Q:2, H:3
+#  :version     S:0(default), M:1, L:2
+#  :auto_extent  true|false auto extent if over version size
+#  :masking     masking pattern 0-7, -1(default auto)
+#  :length      data length
+#  :module_size module size (pixel)
+#  :eps_preview true|false
+
+# This sample creates a EPS with preview.
+qr = QRCode.new(:eps_preview => true, :auto_extent=false)
+qr.save("http://www.ebay.com", "path/to/qrcode.eps")
+</pre>
+
+h2. License
+
+This code is free to use under the terms of the MIT license. 
+
+h2. Contact
+
+Comments are welcome. Send an email via the "rubyforge":http://rubyforge.org/projects/rqr/
+

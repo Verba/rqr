@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+base_dir = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+current_dir = File.expand_path(Dir.pwd)
+
+Dir.chdir("#{base_dir}/ext/rqr")
+
+system('ruby','extconf.rb', '--with-opt-dir=/sw')
+system('make')
+
+system('mv','QR.bundle',"#{base_dir}/lib/rqr/")
+
