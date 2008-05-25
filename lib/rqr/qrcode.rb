@@ -4,13 +4,13 @@ module RQR
     # options
     #  :level       L:0, M:1(default), Q:2, H:3
     #  :version     S:0(default), M:1, L:2
-    #  :autoextent  true(default)|false auto extent if over version size
+    #  :auto_extend  true(default)|false auto extent if over version size
     #  :masking     masking pattern 0-7, -1(default auto)
     #  :length      data length
     #  :module_size module pixel size
     #  :eps_preview true|false(default)
   	def initialize(options = {})
-  		@options = { :level => 1, :version => 0, :autoextend => true, 
+  		@options = { :level => 1, :version => 0, :auto_extend => true, 
   		             :masking => -1, :eps_preview => false, :module_size => 4 }
       @options.merge!(options)
   	end
@@ -55,7 +55,7 @@ module RQR
 
   	def init_encoder(data)
       @encoder = QR::CQR_Encode.new
-      unless @encoder.EncodeData(@options[:level], @options[:version], @options[:autoextend], @options[:masking], data)
+      unless @encoder.EncodeData(@options[:level], @options[:version], @options[:auto_extend], @options[:masking], data)
         close; raise EncodeException.new("qrcode encord error!")
       end
 	  end

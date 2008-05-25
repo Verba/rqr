@@ -4,7 +4,7 @@
 
 == DESCRIPTION:
 
-A ruby library to create qrcode. Output: PS, JPEG, PNG, EPS, TIFF.
+A ruby library to create QR code image. Output: PS, JPEG, PNG, EPS, TIFF.
 
 == SYNOPSIS:
 
@@ -55,7 +55,7 @@ If using OSX, Use Fink(http://www.finkproject.org) Universal Binary libs.
 
 (The MIT License)
 
-Copyright (c) 2008 Ryota Maruko, Keiko Soejima
+Copyright (c) 2008 Ryota Maruko, Keiko Soezima
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
