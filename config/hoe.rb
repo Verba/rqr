@@ -42,7 +42,18 @@ class Hoe
   def extra_deps 
     @extra_deps.reject! { |x| Array(x).first == 'hoe' } 
     @extra_deps
-  end 
+  end
+  
+  def spec= s
+    
+    if PACKAGE_PLATFORM =~ /mswin32/
+      s.files = s.files.reject! {|f| f =~ /extconf\.rb/ }
+    else
+      s.files = s.files.reject! {|f| f =~ /QR\.so/ }
+    end
+    @spec = s
+  end
+
 end
 
 # Generate all the Rake tasks
@@ -61,7 +72,12 @@ $hoe = Hoe.new(GEM_NAME, VERS) do |p|
   #p.extra_deps = []     # An array of rubygem dependencies [name, version], e.g. [ ['active_support', '>= 1.3.1'] ]
   
   #p.spec_extras = {}    # A hash of extra values to set in the gemspec.
-  p.spec_extras[:extensions] = ['ext/rqr/extconf.rb']
+  if PACKAGE_PLATFORM =~ /mswin32/
+    platform = Gem::Platform.respond_to?(:new) ? Gem::Platform.new('mswin32') : Gem::Platform::WIN32
+    p.spec_extras[:platform] = platform
+  else
+    p.spec_extras[:extensions] = ['ext/rqr/extconf.rb']
+  end
 
 end
 

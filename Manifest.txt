@@ -21,6 +21,7 @@ ext/rqr/qr_draw_tiff.h
 ext/rqr/qr_wrap.cxx
 ext/rqr/win2ansi.h
 lib/rqr.rb
+lib/rqr/QR.so
 lib/rqr/errors.rb
 lib/rqr/qrcode.rb
 lib/rqr/version.rb

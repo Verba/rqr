@@ -4,7 +4,7 @@ base_dir = File.join(File.dirname(__FILE__), "..")
 glob_pattern = File.join("**", "*")
 exclude_patterns = [
   /^pkg/,/^doc/,/^coverage/,/^log/,/^website/,/^tasks/,/^script/,
-  /QR.so$/,/QR.bundle$/,/QR.dll$/
+  /QR.bundle$/,/QR.dll$/
 ]
 
 Dir.chdir(base_dir)
