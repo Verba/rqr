@@ -13,6 +13,7 @@ module RQR
   		@options = { :level => 1, :version => 0, :auto_extend => true, 
   		             :masking => -1, :eps_preview => false, :module_size => 4 }
       @options.merge!(options)
+      @imager = nil
   	end
   	
     # data::  data for qrcode
