@@ -49,7 +49,7 @@ If using OSX, Use Fink(http://www.finkproject.org) Universal Binary libs.
 or use MacPorts (http://www.macports.com)
 * sudo port install jpeg
 * sudo port install libpng
-* sudo port install libtiff
+* sudo port install tiff
 
 
 == INSTALL:

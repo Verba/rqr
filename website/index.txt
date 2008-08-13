@@ -31,6 +31,13 @@ $ sudo fink install libtiff
 </pre>
 
 
+or use MacPorts (http://www.macports.com)
+<pre syntax="ruby">
+$ sudo port install jpeg
+$ sudo port install libpng
+$ sudo fink install tiff
+</pre>
+
 h2. Installing
 
 <pre syntax="ruby">sudo gem install rqr</pre>

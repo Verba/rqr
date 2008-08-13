@@ -1,7 +1,7 @@
 == 0.2.0 2008-08-13
 
 * Added win32 package
-* 
+* macport available (alpha)
 
 == 0.1.1 2008-05-26
 
