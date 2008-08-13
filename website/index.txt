@@ -38,6 +38,10 @@ $ sudo port install libpng
 $ sudo fink install tiff
 </pre>
 
+h3. Windows
+
+Nothing to do. rqr for win32 include binary lib.
+
 h2. Installing
 
 <pre syntax="ruby">sudo gem install rqr</pre>
