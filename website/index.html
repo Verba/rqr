@@ -33,7 +33,7 @@
     <h1>rqr</h1>
     <div id="version" class="clickable" onclick='document.location = "http://rubyforge.org/projects/rqr"; return false'>
       <p>Get Version</p>
-      <a href="http://rubyforge.org/projects/rqr" class="numbers">0.2.0</a>
+      <a href="http://rubyforge.org/projects/rqr" class="numbers">0.2.1</a>
     </div>
     <h2>What</h2>
 
@@ -95,32 +95,64 @@
 	<h2>Demonstration of usage</h2>
 
 
+	<h3>Sample1: Simple usage</h3>
+
+
 	<p><pre class='syntax'>
 <span class="ident">require</span> <span class="punct">&quot;</span><span class="string">rubygem</span><span class="punct">&quot;</span>
-<span class="ident">require</span> <span class="punct">&quot;</span><span class="string">rqrcode</span><span class="punct">&quot;</span>
+<span class="ident">require</span> <span class="punct">&quot;</span><span class="string">rqr</span><span class="punct">&quot;</span>
 
-<span class="ident">qr</span> <span class="punct">=</span> <span class="constant">RQR</span><span class="punct">::</span><span class="constant">QRCode</span><span class="punct">.</span><span class="ident">new</span><span class="punct">()</span>
-
-<span class="comment">#Define a file format with extensions.</span>
-<span class="ident">qr</span><span class="punct">.</span><span class="ident">save</span><span class="punct">(&quot;</span><span class="string">http://www.google.com</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">path/to/qrcode.jpg</span><span class="punct">&quot;)</span>
+<span class="comment"># Define a file format with extensions.</span>
+<span class="constant">RQR</span><span class="punct">::</span><span class="constant">QRCode</span><span class="punct">.</span><span class="ident">create</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">qr</span><span class="punct">|</span>
+  <span class="ident">qr</span><span class="punct">.</span><span class="ident">save</span><span class="punct">(&quot;</span><span class="string">http://www.amazon.com</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">path/to/qrcode.jpg</span><span class="punct">&quot;)</span>
+<span class="keyword">end</span>
 
 <span class="comment">#Define a file format with symbol.</span>
-<span class="ident">qr</span><span class="punct">.</span><span class="ident">save</span><span class="punct">(&quot;</span><span class="string">http://www.yahoo.com</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">path/to/qrcodefile</span><span class="punct">&quot;,</span> <span class="symbol">:png</span><span class="punct">)</span>	
+<span class="constant">RQR</span><span class="punct">::</span><span class="constant">QRCode</span><span class="punct">.</span><span class="ident">create</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">qr</span><span class="punct">|</span>
+  <span class="ident">qr</span><span class="punct">.</span><span class="ident">save</span><span class="punct">(&quot;</span><span class="string">http://www.amazon.com</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">path/to/qrcodefile</span><span class="punct">&quot;,</span> <span class="symbol">:png</span><span class="punct">)</span>
+<span class="keyword">end</span>
+</pre></p>
 
 
-<span class="comment">#QRCode options</span>
+	<h3>Sample2: Creating <span class="caps">EPS</span> with preview</h3>
+
+
+	<p><pre class='syntax'>
+<span class="ident">require</span> <span class="punct">&quot;</span><span class="string">rubygem</span><span class="punct">&quot;</span>
+<span class="ident">require</span> <span class="punct">&quot;</span><span class="string">rqr</span><span class="punct">&quot;</span>
+
+<span class="comment"># QRCode options</span>
 <span class="comment"># Use options with hash values.</span>
-<span class="comment">#  :level       L:0, M:1(default), Q:2, H:3</span>
-<span class="comment">#  :version     S:0(default), M:1, L:2</span>
-<span class="comment">#  :auto_extent  true|false auto extent if over version size</span>
-<span class="comment">#  :masking     masking pattern 0-7, -1(default auto)</span>
-<span class="comment">#  :length      data length</span>
-<span class="comment">#  :module_size module size (pixel)</span>
-<span class="comment">#  :eps_preview true|false</span>
+<span class="comment"># :level       L:0, M:1(default), Q:2, H:3</span>
+<span class="comment"># :version     S:0(default), M:1, L:2</span>
+<span class="comment"># :auto_extent  true|false auto extent if over version size</span>
+<span class="comment"># :masking     masking pattern 0-7, -1(default auto)</span>
+<span class="comment"># :length      data length</span>
+<span class="comment"># :module_size module size (pixel)</span>
+<span class="comment"># :eps_preview true|false</span>
 
 <span class="comment"># This sample creates a EPS with preview.</span>
-<span class="ident">qr</span> <span class="punct">=</span> <span class="constant">QRCode</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="symbol">:eps_preview</span> <span class="punct">=&gt;</span> <span class="constant">true</span><span class="punct">,</span> <span class="symbol">:auto_extent=</span><span class="constant">false</span><span class="punct">)</span>
-<span class="ident">qr</span><span class="punct">.</span><span class="ident">save</span><span class="punct">(&quot;</span><span class="string">http://www.ebay.com</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">path/to/qrcode.eps</span><span class="punct">&quot;)</span>
+<span class="constant">RQR</span><span class="punct">::</span><span class="constant">QRCode</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="symbol">:eps_preview</span> <span class="punct">=&gt;</span> <span class="constant">true</span><span class="punct">,</span> <span class="symbol">:auto_extent=</span><span class="constant">false</span><span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">qr</span><span class="punct">|</span>
+  <span class="ident">qr</span><span class="punct">.</span><span class="ident">save</span><span class="punct">(&quot;</span><span class="string">http://www.ebay.com</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">path/to/qrcode.eps</span><span class="punct">&quot;)</span>
+<span class="keyword">end</span>
+</pre></p>
+
+
+	<h3>Sample3: Old style</h3>
+
+
+	<p><pre class='syntax'>
+<span class="ident">require</span> <span class="punct">&quot;</span><span class="string">rubygem</span><span class="punct">&quot;</span>
+<span class="ident">require</span> <span class="punct">&quot;</span><span class="string">rqr</span><span class="punct">&quot;</span>
+
+<span class="comment"># Old style for (0.2.0, 0.1.1, 0.1.0)</span>
+<span class="ident">qr</span> <span class="punct">=</span> <span class="constant">RQR</span><span class="punct">::</span><span class="constant">QRCode</span><span class="punct">.</span><span class="ident">new</span><span class="punct">()</span>
+
+<span class="comment"># Define a file format with extensions.</span>
+<span class="ident">qr</span><span class="punct">.</span><span class="ident">save</span><span class="punct">(&quot;</span><span class="string">http://www.google.com</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">path/to/qrcode.jpg</span><span class="punct">&quot;)</span>
+
+<span class="comment"># Define a file format with symbol.</span>
+<span class="ident">qr</span><span class="punct">.</span><span class="ident">save</span><span class="punct">(&quot;</span><span class="string">http://www.yahoo.com</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">path/to/qrcodefile</span><span class="punct">&quot;,</span> <span class="symbol">:png</span><span class="punct">)</span>
 </pre></p>
 
 
@@ -135,7 +167,7 @@
 
 	<p>Comments are welcome. Send an email via the <a href="http://rubyforge.org/projects/rqr/">rubyforge</a></p>
     <p class="coda">
-      RyotaMaruko, 13th August 2008<br>
+      RyotaMaruko, 15th August 2008<br>
       Theme extended from <a href="http://rb2js.rubyforge.org/">Paul Battley</a>,
       by Daniel Cadenas via <a href="http://depgraph.rubyforge.org/">DepGraph</a>
     </p>

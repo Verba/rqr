@@ -1,3 +1,8 @@
+== 0.2.1 2008-08-15
+
+* Block available
+* Fixed document and website
+
 == 0.2.0 2008-08-13
 
 * Added win32 package

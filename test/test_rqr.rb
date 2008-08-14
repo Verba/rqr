@@ -6,6 +6,7 @@ class TestRqr < Test::Unit::TestCase
   TEST_PNG='test.png'
   TEST_EPS='test.eps'
   TEST_EPS_WITH_PREVIEW='test_preview.eps'
+  TEST_NO_EXT = 'test_qrcode'
 
   def setup
     clear_test_file
@@ -51,6 +52,27 @@ class TestRqr < Test::Unit::TestCase
     assert_raise(RQR::FormatNotFoundException) {qrcode.save('http://www.ebay.com',"test.error")}
     delete_file(TEST_EPS)
   end
+  
+  def test_create_method
+    RQR::QRCode.create{|qrcode| qrcode.save('http://www.ebay.com', TEST_JPEG)}
+    assert_equal(true, File.exist?(TEST_JPEG))
+    delete_file(TEST_JPEG)
+  end
+  
+  def test_create_method2
+
+    # Define a file format with extensions.
+    RQR::QRCode.create do |qr|
+      qr.save("http://www.amazon.com", TEST_JPEG)
+      qr.save("http://www.amazon.com", TEST_NO_EXT, :png)
+    end
+    assert_equal(true, File.exist?(TEST_JPEG))
+    delete_file(TEST_JPEG)
+    assert_equal(true, File.exist?(TEST_NO_EXT))
+    delete_file(TEST_NO_EXT)
+
+  end
+  
   
   def clear_test_file
     delete_file(TEST_TIFF)

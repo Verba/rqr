@@ -48,33 +48,64 @@ h2. Installing
 
 h2. Demonstration of usage
 
+
+h3. Sample1: Simple usage
+
 <pre syntax="ruby">
 require "rubygem"
-require "rqrcode"
+require "rqr"
 
-qr = RQR::QRCode.new()
-
-#Define a file format with extensions.
-qr.save("http://www.google.com", "path/to/qrcode.jpg")
+# Define a file format with extensions.
+RQR::QRCode.create do |qr|
+  qr.save("http://www.amazon.com", "path/to/qrcode.jpg")
+end
 
 #Define a file format with symbol.
-qr.save("http://www.yahoo.com", "path/to/qrcodefile", :png)	
+RQR::QRCode.create do |qr|
+  qr.save("http://www.amazon.com", "path/to/qrcodefile", :png)
+end
+</pre>
 
 
-#QRCode options
+h3. Sample2: Creating EPS with preview
+
+<pre syntax="ruby">
+require "rubygem"
+require "rqr"
+
+# QRCode options
 # Use options with hash values.
-#  :level       L:0, M:1(default), Q:2, H:3
-#  :version     S:0(default), M:1, L:2
-#  :auto_extent  true|false auto extent if over version size
-#  :masking     masking pattern 0-7, -1(default auto)
-#  :length      data length
-#  :module_size module size (pixel)
-#  :eps_preview true|false
+# :level       L:0, M:1(default), Q:2, H:3
+# :version     S:0(default), M:1, L:2
+# :auto_extent  true|false auto extent if over version size
+# :masking     masking pattern 0-7, -1(default auto)
+# :length      data length
+# :module_size module size (pixel)
+# :eps_preview true|false
 
 # This sample creates a EPS with preview.
-qr = QRCode.new(:eps_preview => true, :auto_extent=false)
-qr.save("http://www.ebay.com", "path/to/qrcode.eps")
+RQR::QRCode.new(:eps_preview => true, :auto_extent=false) do |qr|
+  qr.save("http://www.ebay.com", "path/to/qrcode.eps")
+end
 </pre>
+
+
+h3. Sample3: Old style
+
+<pre syntax="ruby">
+require "rubygem"
+require "rqr"
+
+# Old style for (0.2.0, 0.1.1, 0.1.0)
+qr = RQR::QRCode.new()
+
+# Define a file format with extensions.
+qr.save("http://www.google.com", "path/to/qrcode.jpg")
+
+# Define a file format with symbol.
+qr.save("http://www.yahoo.com", "path/to/qrcodefile", :png)
+</pre>
+
 
 h2. License
 

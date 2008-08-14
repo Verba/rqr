@@ -4,23 +4,20 @@
 
 == DESCRIPTION:
 
-A ruby library to create QR code image. Output: PS, JPEG, PNG, EPS, TIFF.
+A ruby library to create QR code. Output: PS, JPEG, PNG, EPS, TIFF.
 
 == SYNOPSIS:
 
 	require "rubygem"
-	require "rqrcode"
+	require "rqr"
 
-	qr = RQR::QRCode.new()
-
-	#Define a file format with extensions.
-	qr.save("http://www.google.com", "path/to/qrcode.jpg")
-
-	#Define a file format with symbol.
-	qr.save("http://www.yahoo.com", "path/to/qrcodefile", :png)	
+  # Block is available from version 0.2.1
+	RQR::QRCode.create do |qr|
+	  qr.save("http://www.amazon.com", "path/to/qrcode.jpg")
+	end
 
 
-	#QRCode options
+	# QRCode options
 	#Use options with hash values.
 	#:level       L:0, M:1(default), Q:2, H:3
 	#:version     S:0(default), M:1, L:2
@@ -30,9 +27,21 @@ A ruby library to create QR code image. Output: PS, JPEG, PNG, EPS, TIFF.
 	#:module_size module size (pixel)
 	#:eps_preview true|false
 
-	#This sample creates a EPS with preview.
-	qr = QRCode.new(:eps_preview => true, :auto_extent=false)
-	qr.save("http://www.ebay.com", "path/to/qrcode.eps")
+	# This sample creates a EPS with preview.
+	RQR::QRCode.new(:eps_preview => true, :auto_extent=false) do |qr|
+		qr.save("http://www.ebay.com", "path/to/qrcode.eps")
+  end
+
+
+  # Old style (0.2.0, 0.1.1, 0.1.0)
+	qr = RQR::QRCode.new()
+
+	#Define a file format with extensions.
+	qr.save("http://www.google.com", "path/to/qrcode.jpg")
+
+	#Define a file format with symbol.
+	qr.save("http://www.yahoo.com", "path/to/qrcodefile", :png)	
+	
 
 == REQUIREMENTS:
 
