@@ -1,3 +1,7 @@
+== 0.2.2 2008-08-16
+
+* Document updated. (thanks to Hugh Sasse).
+
 == 0.2.1 2008-08-15
 
 * Block available

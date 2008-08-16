@@ -41,6 +41,15 @@
 	<p>A ruby library to create qrcode. Output: PS, <span class="caps">JPEG</span>, PNG, <span class="caps">EPS</span>, TIFF.</p>
 
 
+	<p><span class="caps">A QR</span> code is a 2-dimensional &#8220;barcode&#8221; of a type popular in Japan.
+It is intended for transferring chunks of data such as long URLs
+using a camera (Eg. on a phone), together with decoding software.</p>
+
+
+	<p>There is more information at http://en.wikipedia.org/wiki/QR_Code
+and at http://www.denso-wave.com/qrcode/index-e.html.</p>
+
+
 	<h2><span class="caps">REQUIREMENTS</span></h2>
 
 
@@ -76,7 +85,7 @@
 <pre class='syntax'>
 <span class="global">$ </span><span class="ident">sudo</span> <span class="ident">port</span> <span class="ident">install</span> <span class="ident">jpeg</span>
 <span class="global">$ </span><span class="ident">sudo</span> <span class="ident">port</span> <span class="ident">install</span> <span class="ident">libpng</span>
-<span class="global">$ </span><span class="ident">sudo</span> <span class="ident">fink</span> <span class="ident">install</span> <span class="ident">tiff</span>
+<span class="global">$ </span><span class="ident">sudo</span> <span class="ident">port</span> <span class="ident">install</span> <span class="ident">tiff</span>
 </pre></p>
 
 
@@ -121,9 +130,10 @@
 <span class="ident">require</span> <span class="punct">&quot;</span><span class="string">rubygem</span><span class="punct">&quot;</span>
 <span class="ident">require</span> <span class="punct">&quot;</span><span class="string">rqr</span><span class="punct">&quot;</span>
 
-<span class="comment"># QRCode options</span>
+<span class="comment"># QRCode options (passed to RQR::QRCode.new())</span>
 <span class="comment"># Use options with hash values.</span>
 <span class="comment"># :level       L:0, M:1(default), Q:2, H:3</span>
+<span class="comment">#  (determines how fault tolerant the code is.)</span>
 <span class="comment"># :version     S:0(default), M:1, L:2</span>
 <span class="comment"># :auto_extent  true|false auto extent if over version size</span>
 <span class="comment"># :masking     masking pattern 0-7, -1(default auto)</span>
@@ -167,7 +177,7 @@
 
 	<p>Comments are welcome. Send an email via the <a href="http://rubyforge.org/projects/rqr/">rubyforge</a></p>
     <p class="coda">
-      RyotaMaruko, 15th August 2008<br>
+      RyotaMaruko, 16th August 2008<br>
       Theme extended from <a href="http://rb2js.rubyforge.org/">Paul Battley</a>,
       by Daniel Cadenas via <a href="http://depgraph.rubyforge.org/">DepGraph</a>
     </p>

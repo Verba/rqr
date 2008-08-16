@@ -6,6 +6,14 @@
 
 A ruby library to create QR code. Output: PS, JPEG, PNG, EPS, TIFF.
 
+A QR code is a 2-dimensional "barcode" of a type popular in Japan.
+It is intended for transferring chunks of data such as long URLs
+using a camera (Eg. on a phone), together with decoding software.
+
+There is more information at http://en.wikipedia.org/wiki/QR_Code
+and at http://www.denso-wave.com/qrcode/index-e.html.
+
+
 == SYNOPSIS:
 
 	require "rubygem"
@@ -17,9 +25,10 @@ A ruby library to create QR code. Output: PS, JPEG, PNG, EPS, TIFF.
 	end
 
 
-	# QRCode options
+	#QRCode options (passed to RQR::QRCode.new())
 	#Use options with hash values.
 	#:level       L:0, M:1(default), Q:2, H:3
+	# (determines how fault tolerant the code is.)
 	#:version     S:0(default), M:1, L:2
 	#:auto_extent  true|false auto extent if over version size
 	#:masking     masking pattern 0-7, -1(default auto)
