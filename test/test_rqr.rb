@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-class TestRqr < Test::Unit::TestCase
+class TestRQR < Test::Unit::TestCase
   TEST_JPEG='test.jpg'
   TEST_TIFF='test.tiff'
   TEST_PNG='test.png'

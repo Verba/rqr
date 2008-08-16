@@ -13,7 +13,7 @@ require 'syntax/convertors/html'
 require 'erb'
 require File.dirname(__FILE__) + '/../lib/rqr/version.rb'
 
-version  = Rqr::VERSION::STRING
+version  = RQR::VERSION::STRING
 download = 'http://rubyforge.org/projects/rqr'
 
 class Fixnum
