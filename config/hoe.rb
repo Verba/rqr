@@ -38,24 +38,6 @@ RDOC_OPTS = ['--quiet', '--title', 'rqr documentation',
     "--main", "README",
     "--inline-source"]
 
-class Hoe
-  def extra_deps 
-    @extra_deps.reject! { |x| Array(x).first == 'hoe' } 
-    @extra_deps
-  end
-  
-  def spec= s
-    
-    if PACKAGE_PLATFORM =~ /mswin32/
-      s.files = s.files.reject! {|f| f =~ /extconf\.rb/ }
-    else
-      s.files = s.files.reject! {|f| f =~ /QR\.so/ }
-    end
-    @spec = s
-  end
-
-end
-
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
 $hoe = Hoe.new(GEM_NAME, VERS) do |p|
