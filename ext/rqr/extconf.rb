@@ -11,7 +11,6 @@
 =end
 require 'mkmf'
 require 'rbconfig'
-$libs = append_library($libs, "supc++")
 
 FINK_DIR = '/sw'
 MACPORT_DIR = '/opt/local'
