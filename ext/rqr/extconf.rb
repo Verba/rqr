@@ -26,6 +26,7 @@ if RUBY_PLATFORM =~ /darwin/
   dir_config('png', DARWIN_PORT_DIR)
   dir_config('tiff', DARWIN_PORT_DIR)
 else
+  $libs = append_library($libs, "supc++")
   dir_config('jpeg')
   dir_config('png')
   dir_config('tiff')
