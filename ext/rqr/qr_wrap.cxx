@@ -828,6 +828,24 @@ SWIG_UnpackDataName(const char *c, void *ptr, size_t sz, const char *name) {
 #endif
 #endif
 
+/* RSTRING_LEN, etc are new in Ruby 1.9, but ->ptr and ->len no longer work */
+/* Define these for older versions so we can just write code the new way */
+#ifndef RSTRING_LEN
+# define RSTRING_LEN(x) RSTRING(x)->len
+#endif
+#ifndef RSTRING_PTR
+# define RSTRING_PTR(x) RSTRING(x)->ptr
+#endif
+#ifndef RARRAY_LEN
+# define RARRAY_LEN(x) RARRAY(x)->len
+#endif
+#ifndef RARRAY_PTR
+# define RARRAY_PTR(x) RARRAY(x)->ptr
+#endif
+#ifndef STR2CSTR
+# define STR2CSTR(s) StringValuePtr(s)
+#endif
+
 /*
  * Need to be very careful about how these macros are defined, especially
  * when compiling C++ code or C code with an ANSI C compiler.
@@ -1303,7 +1321,7 @@ SWIG_Ruby_NewPointerObj(void *ptr, swig_type_info *type, int flags)
         downcast methods. */
       if (obj != Qnil) {
         VALUE value = rb_iv_get(obj, "__swigtype__");
-        char* type_name = RSTRING(value)->ptr;
+        char* type_name = RSTRING_PTR(value);
 				
         if (strcmp(type->name, type_name) == 0) {
           return obj;
@@ -1615,7 +1633,7 @@ SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
 
     char *cstr = STR2CSTR(obj);
     
-    size_t size = RSTRING(obj)->len + 1;
+    size_t size = RSTRING_LEN(obj) + 1;
     if (cptr)  {
       if (alloc) {
 	if (*alloc == SWIG_NEWOBJ) {
