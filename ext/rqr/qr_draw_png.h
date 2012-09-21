@@ -6,6 +6,7 @@
 #include "qr_draw.h"
 
 #ifdef USE_PNG
+	#include <zlib.h>
 	#include <png.h>
 #endif
 
