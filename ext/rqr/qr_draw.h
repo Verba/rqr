@@ -1,12 +1,13 @@
 #ifndef _QR_DRAW_
 #define _QR_DRAW_
 
-#define MARGIN_SIZE      4	/* マージンサイズ */
-#define MAX_MODULESIZE 177	/* データバイト列の領域サイズ */
+#define USE_JPEG
+#define USE_PNG
+#define USE_TIFF
 
-//=============================================================================
-// QRDraw クラス
-//=============================================================================
+#define MARGIN_SIZE      4
+#define MAX_MODULESIZE 177
+
 class QRDraw
 {
 	public:
@@ -26,11 +27,11 @@ class QRDraw
 		}
 		
 	protected:
-		unsigned char **bit_image;	//ピクセルイメージを格納する
-		int msize;					// 1ドットを表現するピクセル数(=modulesize)
-		int rsize;					// マージンを含めた実際のイメージの一辺
-		int ssize;					// シンボルサイズ(マージンを含めない、ドットの個数)
-		char *filename;				// 保存するファイル名
+		unsigned char **bit_image;
+		int msize;
+		int rsize;
+		int ssize;
+		char *filename;
 
 	public:
 		virtual int draw(char *filename, int modulesize, int symbolsize, 

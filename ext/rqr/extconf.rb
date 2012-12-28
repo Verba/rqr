@@ -12,35 +12,21 @@
 require 'mkmf'
 require 'rbconfig'
 
-FINK_DIR = '/sw'
-MACPORT_DIR = '/opt/local'
+dir_config('jpeg')
+dir_config('png')
+dir_config('tiff')
 
-if File.exists?(FINK_DIR)
-  DARWIN_PORT_DIR = FINK_DIR
-else
-  DARWIN_PORT_DIR = MACPORT_DIR
-end
-
-if RUBY_PLATFORM =~ /darwin/
-  dir_config('jpeg', DARWIN_PORT_DIR)
-  dir_config('png', DARWIN_PORT_DIR)
-  dir_config('tiff', DARWIN_PORT_DIR)
-else
+unless RUBY_PLATFORM =~ /darwin/
   $libs = append_library($libs, "supc++")
-  dir_config('jpeg')
-  dir_config('png')
-  dir_config('tiff')
 end
 
-if have_header('jpeglib.h') && have_library('jpeg')
-  $CFLAGS += ' -DUSE_JPG'
-end
+have_header('jpeglib.h')
+have_library('jpeg')
 
-if have_header('png.h') && have_library('png')
-  $CFLAGS += ' -DUSE_PNG'
-end
+have_header('png.h')
+have_library('png')
 
-if have_header('tiff.h') && have_library('tiff')
-  $CFLAGS += ' -DUSE_TIFF'
-end
+have_header('tiff.h')
+have_library('tiff')
+
 create_makefile('rqr/QR')
