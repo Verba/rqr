@@ -2,6 +2,7 @@
 #define _QR_DRAW_PNG_
 
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include "qr_draw.h"
 
