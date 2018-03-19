@@ -1,4 +1,3 @@
-
 module RQR
   class QRCode
     # options
@@ -10,19 +9,19 @@ module RQR
     #  :module_size module pixel size
     #  :eps_preview true|false(default)
   	def initialize(options = {})
-  		@options = { :level => 1, :version => 0, :auto_extend => true, 
+  		@options = { :level => 1, :version => 0, :auto_extend => true,
   		             :masking => -1, :eps_preview => false, :module_size => 4 }
       @options.merge!(options)
       @imager = nil
   	end
-  	
+
   	def self.create(options = {})
   	  raise BlockNotFoundException.new("Block not found!") unless block_given?
   	  qrcode = RQR::QRCode.new(options)
   	  yield qrcode
   	  qrcode.close
 	  end
-  	
+
     # data::  data for qrcode
     # path::  path for qrcode image file
     # format:: image format. :jpg|:png|:tiff|:eps
@@ -43,19 +42,19 @@ module RQR
   			else
   			  close; raise RQR::FormatNotFoundException.new("invalid format! #{format}")
   		end
-      
+
       close
-      
+
       if res != 0
         raise RQR::ImageException.new("qrcode image error! #{path} wasn't created.")
   		end
   	end
-	
+
   	def close()
   	  @encoder = nil if @encoder
   	  (@imager.close; @imager = nil) if @imager
   	end
-	
+
   private
   	def get_format(path)
   		File.extname(path).gsub(/^\./,"").to_sym
@@ -72,7 +71,7 @@ module RQR
       @imager=QR::QRDrawJPEG.new
       @imager.draw(path, @options[:module_size], @encoder.m_nSymbleSize, @encoder.m_byModuleData, nil)
   	end
-	
+
   	def save_as_png(path)
       @imager=QR::QRDrawPNG.new
       @imager.draw(path, @options[:module_size], @encoder.m_nSymbleSize, @encoder.m_byModuleData, nil)
@@ -84,7 +83,7 @@ module RQR
   	end
 
   	def save_as_eps(path)
-      opt= @options[:eps_preview] ? DL::PtrData.allocate : nil
+      opt= @options[:eps_preview] ? Fiddle::Pointer.allocate : nil
       @imager=QR::QRDrawPS.new
       ret = @imager.draw(path, @options[:module_size], @encoder.m_nSymbleSize, @encoder.m_byModuleData, opt)
       opt.free if opt
@@ -92,4 +91,3 @@ module RQR
   	end
   end
 end
-
